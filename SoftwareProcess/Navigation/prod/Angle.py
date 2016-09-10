@@ -20,7 +20,7 @@ class Angle():
         if islegal(degrees):
             result = spliter(degrees)
             minTemp = round(float(result[1]) % 60,1)
-            carry = int(result[1]) /60
+            carry = int(float(result[1]) /60)
             if int(result[0]) < 0:
                 self.degrees = ((int(result[0]) - carry) - (minTemp / 60)) % 360
                 self.minutes = (self.degrees - int(self.degrees)) * 60
