@@ -28,6 +28,6 @@ for stringValue in inputValue2:
         print(e)
 '''
 
-myAngle1.setDegreesAndMinutes("45d7.4")
+myAngle1.setDegreesAndMinutes("45d6.0")
 print myAngle1.getString()
 print myAngle1.getDegrees()
