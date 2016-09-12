@@ -13,7 +13,7 @@ class Angle():
             self.degrees = value % 360
             self.minutes = (self.degrees - int(self.degrees)) * 60
         else:
-            raise ValueError("The input of degrees is not numeric value")
+            raise ValueError("Angle.setDegree:  The input of degrees is not numeric value")
         pass
     
     def setDegreesAndMinutes(self, degrees):
@@ -28,7 +28,7 @@ class Angle():
                 self.degrees = ((int(result[0]) + carry) + (minTemp / 60)) % 360
                 self.minutes = (self.degrees - int(self.degrees)) * 60
         else:
-            raise ValueError("The input of degrees is not numeric value")
+            raise ValueError("Angle.setDegreesAndMinutes:  The input of degrees is not numeric value")
         pass
     
     def add(self, angle):
@@ -38,7 +38,7 @@ class Angle():
             result = leftAdder + rightAdder
             self.setDegrees(result % 360)
         else:
-            raise ValueError("The input value is not a valid instance of Angle")
+            raise ValueError("Angle.add:  The input value is not a valid instance of Angle")
         pass
     
     def subtract(self, angle):
@@ -48,7 +48,7 @@ class Angle():
             result = leftSubtractor - rightSubtractor
             self.setDegrees(result % 360)
         else:
-            raise ValueError("The input value is not a valid instance of Angle")
+            raise ValueError("Angle.subtract:  The input value is not a valid instance of Angle")
         pass
     
     def compare(self, angle):
@@ -62,7 +62,7 @@ class Angle():
             else:
                 return  -1
         else:
-            raise ValueError("The input value is not a valid instance of Angle")
+            raise ValueError("Angle.compare:  The input value is not a valid instance of Angle")
         pass
     
     def getString(self):
