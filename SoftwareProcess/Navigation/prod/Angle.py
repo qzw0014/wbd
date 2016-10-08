@@ -1,14 +1,11 @@
-from tools import isNumber
-from tools import islegal
-from tools import spliter
-
+import re
 class Angle():
     def __init__(self):
         self.degrees = 0
         self.minutes = 0
 
     def setDegrees(self, value = 0):
-        if isNumber(value):
+        if self.isNumber(value):
             self.degrees = value % 360
             self.minutes = round(((self.degrees - int(self.degrees)) * 60), 1)
             return float(self.degrees)
@@ -16,8 +13,8 @@ class Angle():
             raise ValueError("Angle.setDegrees:  The input of degrees is not numeric value")
     
     def setDegreesAndMinutes(self, degrees):
-        if islegal(degrees):
-            result = spliter(degrees)
+        if self.islegal(degrees):
+            result = self.spliter(degrees)
             minTemp = round(float(result[1]) % 60,1)
             carry = int(float(result[1]) /60)
             if int(result[0]) < 0:
@@ -71,3 +68,23 @@ class Angle():
 
     def getDegrees(self):
         return (int(self.degrees) + (self.minutes / 60))
+   
+    def isNumber(self, value):
+        try:
+            value + 1
+            return True
+        except TypeError:
+            return False
+    
+    def islegal(self, value):
+        pattern = re.compile(r'(^-?\d+d\d+\.\d$)|(^-?\d+d\d+$)')
+        result = pattern.match(value)
+        if result:
+            return True
+        else:
+            return False
+        
+    def spliter(self, value):
+        pattern = re.compile(r'-?\d+\.?\d?')
+        result = pattern.findall(value)
+        return result
