@@ -6,8 +6,7 @@ class Angle():
     def __init__(self):
         self.degrees = 0
         self.minutes = 0
-        pass
-    
+
     def setDegrees(self, value = 0):
         if isNumber(value):
             self.degrees = value % 360
@@ -29,8 +28,7 @@ class Angle():
                 self.minutes = round(((self.degrees - int(self.degrees)) * 60), 1)
             return self.degrees
         else:
-            raise ValueError("Angle.setDegreesAndMinutes:  The input of degrees is not numeric value")
-        
+            raise ValueError("Angle.setDegreesAndMinutes:  The input of degrees is not numeric value")    
     
     def add(self, angle = None):
         if isinstance(angle, Angle):
@@ -66,12 +64,10 @@ class Angle():
                 return  -1
         else:
             raise ValueError("Angle.compare:  The input value is not a valid instance of Angle")
-        pass
-    
+
     def getString(self):
         stringResult  = str(int(self.degrees)) + "d" + str(self.minutes)
         return stringResult
-        pass
-    
+
     def getDegrees(self):
         return (int(self.degrees) + (self.minutes / 60))
