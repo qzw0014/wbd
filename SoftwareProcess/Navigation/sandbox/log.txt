@@ -1,0 +1,93 @@
+LOG:	2016-10-09 15:09:03-06:00	Start of log
+LOG:	2016-10-11 13:35:03-06:00:	Start of log
+LOG:	2016-10-11 13:35:03-06:00:	Start of log
+LOG:	2016-10-11 13:35:39-06:00:	Start of log
+LOG:	2016-10-11 13:35:39-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:35:39-06:00:	Start of log
+LOG:	2016-10-11 13:35:39-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:37:52-06:00:	Start of log
+LOG:	2016-10-11 13:37:52-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:37:52-06:00:	Start of log
+LOG:	2016-10-11 13:37:52-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:40:50-06:00:	Start of log
+LOG:	2016-10-11 13:40:50-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:40:57-06:00:	Start of log
+LOG:	2016-10-11 13:40:57-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:41:51-06:00:	Start of log
+LOG:	2016-10-11 13:41:51-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:41:59-06:00:	Start of log
+LOG:	2016-10-11 13:41:59-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:42:18-06:00:	Start of log
+LOG:	2016-10-11 13:42:18-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:43:51-06:00:	Start of log
+LOG:	2016-10-11 13:43:51-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 13:46:54-06:00:	Start of log
+LOG:	2016-10-11 13:46:54-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-11 14:38:03-06:00:	Start of log
+LOG:	2016-10-11 14:38:26-06:00:	Start of log
+LOG:	2016-10-11 14:38:45-06:00:	Start of log
+LOG:	2016-10-11 14:38:45-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 15:02:32-06:00:	Start of log
+LOG:	2016-10-11 15:02:32-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 15:52:10-06:00:	Start of log
+LOG:	2016-10-11 15:52:10-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 15:53:00-06:00:	Start of log
+LOG:	2016-10-11 15:53:00-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 15:56:07-06:00:	Start of log
+LOG:	2016-10-11 15:56:07-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 15:57:10-06:00:	Start of log
+LOG:	2016-10-11 15:57:10-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 15:57:54-06:00:	Start of log
+LOG:	2016-10-11 15:57:54-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 15:59:34-06:00:	Start of log
+LOG:	2016-10-11 15:59:34-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 16:01:02-06:00:	Start of log
+LOG:	2016-10-11 16:01:02-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 16:06:19-06:00:	Start of log
+LOG:	2016-10-11 16:06:19-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 16:09:16-06:00:	Start of log
+LOG:	2016-10-11 16:09:16-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 16:09:22-06:00:	Start of log
+LOG:	2016-10-11 16:09:22-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 16:33:53-06:00:	Start of log
+LOG:	2016-10-11 16:33:53-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 17:08:55-06:00:	Start of log
+LOG:	2016-10-11 17:08:55-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 17:25:18-06:00:	Start of log
+LOG:	2016-10-11 17:25:18-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 17:26:04-06:00:	Start of log
+LOG:	2016-10-11 17:26:04-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 17:27:03-06:00:	Start of log
+LOG:	2016-10-11 17:27:03-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 17:27:29-06:00:	Start of log
+LOG:	2016-10-11 17:27:29-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 17:27:29-06:00:	Aldebaran	2016-03-01	23:40:01	15d1.5
+LOG:	2016-10-11 17:27:29-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-11 17:32:11-06:00:	Start of log
+LOG:	2016-10-11 17:32:11-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 17:32:11-06:00:	Aldebaran	2016-03-01	23:40:01	15d1.5
+LOG:	2016-10-11 17:32:11-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-11 17:32:11-06:00:	End of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 21:43:24-06:00:	Start of log
+LOG:	2016-10-11 21:43:24-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 21:43:24-06:00:	Aldebaran	2016-03-01	23:40:01	15d1.5
+LOG:	2016-10-11 21:43:24-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-11 21:43:24-06:00:	End of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 21:45:02-06:00:	Start of log
+LOG:	2016-10-11 21:45:02-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 21:45:09-06:00:	Aldebaran	2016-03-01	23:40:01	15d1.5
+LOG:	2016-10-11 21:45:09-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-11 21:45:09-06:00:	End of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 22:39:48-06:00:	Start of log
+LOG:	2016-10-11 22:39:48-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 22:41:42-06:00:	Start of log
+LOG:	2016-10-11 22:41:42-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 22:43:05-06:00:	Start of log
+LOG:	2016-10-11 22:43:05-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 22:44:29-06:00:	Start of log
+LOG:	2016-10-11 22:44:29-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 22:46:14-06:00:	Start of log
+LOG:	2016-10-11 22:46:14-06:00:	Start of sighting file:sfNeedSort.xml
+LOG:	2016-10-11 22:46:14-06:00:	Aldebaran	2016-03-01	23:40:01	15d1.5
+LOG:	2016-10-11 22:46:14-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-11 22:46:14-06:00:	End of sighting file:sfNeedSort.xml

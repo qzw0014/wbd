@@ -1,0 +1,6 @@
+
+LOG:	2016-10-09 17:07:38-06:00	Start of log
+LOG:	2016-10-09 17:07:38-06:00	Start of log
+LOG:	2016-10-09 17:07:38-06:00	Start of log
+LOG:	2016-10-09 17:07:38-06:00	Start of sighting file:sf.xml
+LOG:	2016-10-09 17:07:38-06:00	Start of log
