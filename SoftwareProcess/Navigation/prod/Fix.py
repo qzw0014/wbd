@@ -141,5 +141,3 @@ class Fix(object):
             return True
         else:
             return False
-        
-        
