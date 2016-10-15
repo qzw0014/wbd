@@ -1,5 +1,6 @@
 import re
 import time
+from datetime import datetime
 import xml.etree.ElementTree as ET 
 from Navigation.prod.Sighting import Sighting
 from math import sqrt, radians
@@ -55,11 +56,14 @@ class Fix(object):
                 aSighting.set_index()
                 aSighting.set_adjustedAltitude(self.calculateAdjustedAltitude(aSighting))
                 self.sigthingsList.append(aSighting)
-            self.sigthingsList.sort(key=lambda Sighting:Sighting.index)
+            self.sigthingsList.sort(key=lambda Sighting:(Sighting.index, Sighting.body))
             for sighting in self.sigthingsList:
                 self.log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\n")
             self.log.write("LOG:\t" + self.getTime() + ":\tEnd of sighting file:" + self.sightingFile + "\n")
             self.log.close()
+            approximateLatitide = "0d0.0"
+            approximateLongitide = "0d0.0"
+            return (approximateLatitide, approximateLongitide)
     
     
     def calculateAdjustedAltitude(self, sighting):
@@ -89,7 +93,9 @@ class Fix(object):
         errorMessage = "Fix.getSightings:  Errors are encountered in the sighting file."
         anAnlge = Angle()
         ninetyAngle = Angle()
+        miniAngle = Angle()
         ninetyAngle.setDegrees(90)
+        miniAngle.setDegreesAndMinutes("0d0.1")
         try:
             anAnlge.setDegreesAndMinutes(sighting.find("observation").text)
         except:
@@ -108,32 +114,32 @@ class Fix(object):
             raise ValueError(errorMessage)
         elif ninetyAngle.compare(anAnlge) != 1:
             raise ValueError(errorMessage)
+        elif miniAngle.compare(anAnlge) != -1:
+            raise ValueError(errorMessage)
+    
     
     def dateFormatCheck(self, dateValue):
-        dateFormat = re.compile(r'^\d{4}-\d{2}-\d{2}')
-        result = dateFormat.match(dateValue)
-        if result:
+        try:
+            datetime.strptime(dateValue, "%Y-%m-%d")
+            return True
+        except:
+            return False
+    
+    
+    def timeFormatCheck(self, timeValue):
+        try:
+            datetime.strptime(timeValue, "%H:%M:%S")
+            return True
+        except:
+            return False
+        
+        
+    def observationCheck(self, observationValue):
+        pattern = re.compile(r'-?\d+\.?\d?')
+        result = pattern.findall(observationValue)
+        if float(result) < 60:
             return True
         else:
             return False
-    
-    def timeFormatCheck(self, timeValue):
-        timeFormat = re.compile(r'^\d{2}:\d{2}:\d{2}')
-        result = timeFormat.match(timeValue)
-        if result:
-            detailFormat = re.compile(r'\d{2}')
-            resultGroup = detailFormat.findall(timeValue)
-            if int(resultGroup[0]) < 0 or int(resultGroup[0]) > 23:
-                return False
-            elif int(resultGroup[1]) < 0 or int(resultGroup[1]) > 59:
-                return False
-            elif int(resultGroup[2]) < 0 or int(resultGroup[2]) > 59:
-                return False
-            else:
-                return True
-        else:
-            return False
-        
-        
         
         
