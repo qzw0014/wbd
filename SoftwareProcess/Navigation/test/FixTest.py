@@ -62,7 +62,7 @@ class FixTest(unittest.TestCase):
         anFix = Fix.Fix()
         self.assertIsInstance(anFix.setSightingFile("sf.xml"), str)
 #    Sad path
-    def test200_910_ShouldRaiseIssuseOnInvalidFileName(self):
+    def test200_910_ShouldRaiseIssueOnInvalidFileName(self):
         expectedDiag = self.className + "setSightingFile"
         anFix = Fix.Fix()
         with self.assertRaises(ValueError) as context:
@@ -84,5 +84,30 @@ class FixTest(unittest.TestCase):
 #                Errors are encountered in the sighting file
 #                The observed altitude is .LT. 0.1 arc-minutes
 #   Happy path
-    def test300_10_ShouldReturnLaAndLoOfLocation(self):
+    def test300_010_ShouldReturnLaAndLoOfLocation(self):
+        anFix = Fix.Fix()
+        assertResult = "0d0.0", "0d0.0"
+        anFix.setSightingFile("sf.xml")
+        self.assertEqual(assertResult, anFix.getSightings())
+#   Sad path
+    def test300_910_ShouldRaiseIssueOnNoSightingFileSet(self):
+        expectedDiag = self.className + "getSightings"
+        anFix = Fix.Fix()
+        with self.assertRaises(ValueError) as context:
+            anFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+    def test300_920_ShouldRaiseIssueOnEncounterErrorsInSightingFile(self):
+        expectedDiag = self.className + "getSightings"
+        anFix = Fix.Fix()
+        anFix.setSightingFile("ErrorSightings.xml")
+        with self.assertRaises(ValueError) as context:
+            anFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+    def test300_930_ShouldRaiseIssueOnEncounterErrorsInSightingFile(self):
+        expectedDiag = self.className + "getSightings"
+        anFix = Fix.Fix()
+        anFix.setSightingFile("ErrorSightings.xml")
+        with self.assertRaises(ValueError) as context:
+            anFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
         
