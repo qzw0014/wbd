@@ -96,17 +96,31 @@ class FixTest(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             anFix.getSightings()
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
-    def test300_920_ShouldRaiseIssueOnEncounterErrorsInSightingFile(self):
+    def test300_920_ShouldRaiseIssueOnEncounterWithoutBodyInSightingFile(self):
         expectedDiag = self.className + "getSightings"
         anFix = Fix.Fix()
-        anFix.setSightingFile("ErrorSightings.xml")
+        anFix.setSightingFile("ErrorSightingsWithoutBody.xml")
         with self.assertRaises(ValueError) as context:
             anFix.getSightings()
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
-    def test300_930_ShouldRaiseIssueOnEncounterErrorsInSightingFile(self):
+    def test300_930_ShouldRaiseIssueOnEncounterIncorrectDateInSightingFile(self):
         expectedDiag = self.className + "getSightings"
         anFix = Fix.Fix()
-        anFix.setSightingFile("ErrorSightings.xml")
+        anFix.setSightingFile("ErrorSightingsIncorrectDate.xml")
+        with self.assertRaises(ValueError) as context:
+            anFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+    def test300_940_ShouldRaiseIssueOnEncounterInvalidHeightInSightingFile(self):
+        expectedDiag = self.className + "getSightings"
+        anFix = Fix.Fix()
+        anFix.setSightingFile("ErrorSightingInvalidHeight.xml")
+        with self.assertRaises(ValueError) as context:
+            anFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])
+    def test300_950_ShouldRaiseIssueOnObservationLessThanMinimumArcMinutes(self):
+        expectedDiag = self.className + "getSightings"
+        anFix = Fix.Fix()
+        anFix.setSightingFile("ErrorSightingsInvalidObservation.xml")
         with self.assertRaises(ValueError) as context:
             anFix.getSightings()
         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)])

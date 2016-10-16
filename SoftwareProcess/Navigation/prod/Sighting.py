@@ -76,18 +76,26 @@ class Sighting(object):
 
 
     def set_height(self, value = "0"):
+        if value == None:
+            value = "0"
         self.height = value
 
 
     def set_temperature(self, value = "72"):
+        if value == None:
+            value = "72"
         self.temperature = value
 
 
     def set_pressure(self, value = "1010"):
+        if value == None:
+            value = "1010"
         self.pressure = value
 
 
     def set_horizon(self, value = "Natural"):
+        if value == None:
+            value = "Natural"
         self.horizon = value
        
         

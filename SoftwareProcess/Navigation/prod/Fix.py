@@ -44,15 +44,35 @@ class Fix(object):
             xmlDataRoot = self.xmlDataTree.getroot()
             for sighting in xmlDataRoot.findall("sighting"):
                 self.xmlDataCheck(sighting)
+                body = sighting.find("body").text
+                date = sighting.find("date").text
+                time = sighting.find("time").text
+                observation = sighting.find("observation").text
+                try:
+                    height = sighting.find("height").text
+                except:
+                    height = None
+                try:  
+                    temperature = sighting.find("temperature").text
+                except:
+                    temperature = None
+                try:
+                    pressure = sighting.find("pressure").text
+                except:
+                    pressure = None
+                try:
+                    horizon = sighting.find("horizon").text
+                except:
+                    pressure = None
                 aSighting = Sighting()
-                aSighting.set_body(sighting.find("body").text)
-                aSighting.set_date(sighting.find("date").text)
-                aSighting.set_time(sighting.find("time").text)
-                aSighting.set_observation(sighting.find("observation").text)
-                aSighting.set_height(sighting.find("height").text)
-                aSighting.set_temperature(sighting.find("temperature").text)
-                aSighting.set_pressure(sighting.find("pressure").text)
-                aSighting.set_horizon(sighting.find("horizon").text)
+                aSighting.set_body(body)
+                aSighting.set_date(date)
+                aSighting.set_time(time)
+                aSighting.set_observation(observation)
+                aSighting.set_height(height)
+                aSighting.set_temperature(temperature)
+                aSighting.set_pressure(pressure)
+                aSighting.set_horizon(horizon)
                 aSighting.set_index()
                 aSighting.set_adjustedAltitude(self.calculateAdjustedAltitude(aSighting))
                 self.sigthingsList.append(aSighting)
@@ -67,21 +87,35 @@ class Fix(object):
     
     
     def calculateAdjustedAltitude(self, sighting):
+        errorMessage = "Fix.getSightings:  The observed altitude is .LT. 0.1 arc-minutes."
         horizon = sighting.get_horizon()
         altitude = sighting.get_observation()
         pressure = float(sighting.get_pressure())
         temperature = float(sighting.get_temperature())
         height = float(sighting.get_height())
-        if horizon == "Natural":
-            dip = (-0.97 * sqrt(height)) / 60
+        if height < 0:
+            raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
+        if temperature < -20 or temperature > 120:
+            raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
+        if pressure < 100 or pressure > 1100:
+            raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
+        arcAngle = Angle()
+        arcAngle.setDegrees(radians(altitude))
+        miniArcAngle = Angle()
+        miniArcAngle.setDegreesAndMinutes("0d0.1")
+        if miniArcAngle.compare(arcAngle) == 1:
+            raise ValueError(errorMessage)
         else:
-            dip = 0
-        celsiusTemperature = (temperature - 32) / 1.8
-        refraction = (-0.00452 * pressure) / (273 + celsiusTemperature) / tan(radians(altitude))           
-        adjustedAltitude = altitude + dip + refraction
-        resultAngle = Angle()
-        resultAngle.setDegrees(adjustedAltitude)
-        return resultAngle.getString()
+            if horizon == "Natural":
+                dip = (-0.97 * sqrt(height)) / 60
+            else:
+                dip = 0
+            celsiusTemperature = (temperature - 32) / 1.8
+            refraction = (-0.00452 * pressure) / (273 + celsiusTemperature) / tan(radians(altitude))           
+            adjustedAltitude = altitude + dip + refraction
+            resultAngle = Angle()
+            resultAngle.setDegrees(adjustedAltitude)
+            return resultAngle.getString()
     
     
     def getTime(self):
@@ -93,28 +127,27 @@ class Fix(object):
         errorMessage = "Fix.getSightings:  Errors are encountered in the sighting file."
         anAnlge = Angle()
         ninetyAngle = Angle()
-        miniAngle = Angle()
         ninetyAngle.setDegrees(90)
-        miniAngle.setDegreesAndMinutes("0d0.1")
         try:
-            anAnlge.setDegreesAndMinutes(sighting.find("observation").text)
+            body = sighting.find("body").text
+            date = sighting.find("date").text
+            time = sighting.find("time").text
+            observation = sighting.find("observation").text
         except:
             raise ValueError(errorMessage)
-        if sighting.find("body").text == None or sighting.find("body").text == "":
+        try:
+            anAnlge.setDegreesAndMinutes(observation)
+        except:
             raise ValueError(errorMessage)
-        elif not self.dateFormatCheck(sighting.find("date").text):
+        if body == None or body == "":
             raise ValueError(errorMessage)
-        elif not self.timeFormatCheck(sighting.find("time").text):
+        elif not self.dateFormatCheck(date):
             raise ValueError(errorMessage)
-        elif float(sighting.find("height").text) < 0:
+        elif not self.timeFormatCheck(time):
             raise ValueError(errorMessage)
-        elif float(sighting.find("temperature").text) < -20 or float(sighting.find("temperature").text) > 120:
-            raise ValueError(errorMessage)
-        elif float(sighting.find("pressure").text) < 100 or float(sighting.find("pressure").text) > 1100:
+        elif not self.observationMinutesCheck(observation):
             raise ValueError(errorMessage)
         elif ninetyAngle.compare(anAnlge) != 1:
-            raise ValueError(errorMessage)
-        elif miniAngle.compare(anAnlge) != -1:
             raise ValueError(errorMessage)
     
     
@@ -134,10 +167,10 @@ class Fix(object):
             return False
         
         
-    def observationCheck(self, observationValue):
+    def observationMinutesCheck(self, observationValue):
         pattern = re.compile(r'-?\d+\.?\d?')
         result = pattern.findall(observationValue)
-        if float(result) < 60:
+        if float(result[1]) < 60:
             return True
         else:
             return False

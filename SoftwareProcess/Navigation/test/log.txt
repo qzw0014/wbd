@@ -17,3 +17,38 @@ LOG:	2016-10-14 20:57:27-06:00:	End of sighting file:sf.xml
 LOG:	2016-10-14 20:57:27-06:00:	Start of log
 LOG:	2016-10-14 20:57:27-06:00:	Start of log
 LOG:	2016-10-14 20:57:27-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-16 14:29:32-06:00:	Aldebaran	2016-03-01	23:40:01	15d1.5
+LOG:	2016-10-16 14:29:32-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-16 14:29:32-06:00:	End of sighting file:sf.xml
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:29:32-06:00:	Start of sighting file:ErrorSightingInvalidHeight.xml
+LOG:	2016-10-16 14:29:32-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of sighting file:sf.xml
+LOG:	2016-10-16 14:31:06-06:00:	Aldebaran	2016-03-01	23:40:01	15d1.5
+LOG:	2016-10-16 14:31:06-06:00:	Peacock	2016-03-02	00:05:05	45d11.9
+LOG:	2016-10-16 14:31:06-06:00:	End of sighting file:sf.xml
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of sighting file:ErrorSightingsWithoutBody.xml
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of sighting file:ErrorSightingsIncorrectDate.xml
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of sighting file:ErrorSightingInvalidHeight.xml
+LOG:	2016-10-16 14:31:06-06:00:	Start of log
+LOG:	2016-10-16 14:31:06-06:00:	Start of sighting file:ErrorSightingsInvalidObservation.xml
