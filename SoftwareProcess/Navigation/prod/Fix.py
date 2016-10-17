@@ -63,7 +63,7 @@ class Fix(object):
                 try:
                     horizon = sighting.find("horizon").text
                 except:
-                    pressure = None
+                    horizon = None
                 aSighting = Sighting()
                 aSighting.set_body(body)
                 aSighting.set_date(date)
@@ -100,7 +100,7 @@ class Fix(object):
         if pressure < 100 or pressure > 1100:
             raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
         arcAngle = Angle()
-        arcAngle.setDegrees(radians(altitude))
+        arcAngle.setDegrees(altitude)
         miniArcAngle = Angle()
         miniArcAngle.setDegreesAndMinutes("0d0.1")
         if miniArcAngle.compare(arcAngle) == 1:
