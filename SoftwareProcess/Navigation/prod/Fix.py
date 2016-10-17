@@ -33,7 +33,7 @@ class Fix(object):
             self.xmlDataTree = ET.parse(sightingFile)
         except:
             raise ValueError("Fix.setSightingFile:  The file name is invalid.")
-        self.log.write("LOG:\t" + self.getTime() + ":\tStart of sighting file:" + sightingFile + "\n")
+        self.log.write("LOG:\t" + self.getTime() + ":\tStart of sighting file: " + sightingFile + "\n")
         return sightingFile
     
     
