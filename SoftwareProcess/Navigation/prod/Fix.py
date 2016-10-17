@@ -79,7 +79,7 @@ class Fix(object):
             self.sigthingsList.sort(key=lambda Sighting:(Sighting.index, Sighting.body))
             for sighting in self.sigthingsList:
                 self.log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\n")
-            self.log.write("LOG:\t" + self.getTime() + ":\tEnd of sighting file:" + self.sightingFile + "\n")
+            self.log.write("LOG:\t" + self.getTime() + ":\tEnd of sighting file: " + self.sightingFile + "\n")
             self.log.close()
             approximateLatitide = "0d0.0"
             approximateLongitide = "0d0.0"
