@@ -1,5 +1,6 @@
 import re
 import time
+import os
 from datetime import datetime
 import xml.etree.ElementTree as ET 
 from Navigation.prod.Sighting import Sighting
@@ -18,7 +19,8 @@ class Fix(object):
             if logFile != "":
                 try:
                     self.log = open(logFile, "a")
-                    self.log.write("LOG:\t" + self.getTime() + ":\tStart of log\n")
+                    logAbsolutePath = os.path.abspath(logFile)
+                    self.log.write("LOG:\t" + self.getTime() + ":\tLog file:\t" + logAbsolutePath + "\n")
                 except:
                     raise ValueError("Fix.Fix:  The file can not be created or appended.")
             else:
@@ -33,7 +35,8 @@ class Fix(object):
             self.xmlDataTree = ET.parse(sightingFile)
         except:
             raise ValueError("Fix.setSightingFile:  The file name is invalid.")
-        self.log.write("LOG:\t" + self.getTime() + ":\tStart of sighting file: " + sightingFile + "\n")
+        sightingFileAbsPath = os.path.abspath(self.sightingFile)
+        self.log.write("LOG:\t" + self.getTime() + ":\tSighting file: " + sightingFileAbsPath + "\n")
         return sightingFile
     
     

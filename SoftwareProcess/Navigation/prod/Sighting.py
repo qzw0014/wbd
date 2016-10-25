@@ -1,6 +1,7 @@
 from Navigation.prod.Angle import Angle
 class Sighting(object):
 
+    
     def __init__(self):
         self.body = ""
         self.date = ""
@@ -33,6 +34,7 @@ class Sighting(object):
     
     def get_observation(self):
         return self.observation.getDegrees()
+
 
     def get_height(self):
         return self.height
