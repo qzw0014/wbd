@@ -37,7 +37,7 @@ class Fix(object):
             raise ValueError("Fix.setSightingFile:  The file name is invalid.")
         sightingFileAbsPath = os.path.abspath(self.sightingFile)
         self.log.write("LOG:\t" + self.getTime() + ":\tSighting file: " + sightingFileAbsPath + "\n")
-        return sightingFile
+        return sightingFileAbsPath
     
     
     def getSightings(self):
