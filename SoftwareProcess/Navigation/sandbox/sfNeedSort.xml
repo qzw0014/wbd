@@ -8,6 +8,6 @@
         <height>6.0</height>
         <temperature>72</temperature>
         <pressure>1010</pressure>
-        <horizon>Artificial</horizon>
+        <horizon>artificial</horizon>
     </sighting>
 </fix>
