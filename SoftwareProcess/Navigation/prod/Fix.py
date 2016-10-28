@@ -11,22 +11,23 @@ class Fix(object):
     
     
     def __init__(self, logFile = "log.txt"):
-        self.log = None
+        self.logFileName = logFile
         self.xmlDataTree = None
         self.sigthingsList = []
         self.sightingFile = None
         if isinstance(logFile, str):
             if logFile != "":
                 try:
-                    self.log = open(logFile, "a")
+                    log = open(self.logFileName, "a")
                     logAbsolutePath = os.path.abspath(logFile)
-                    self.log.write("LOG:\t" + self.getTime() + ":\tLog file:\t" + logAbsolutePath + "\n")
+                    log.write("LOG:\t" + self.getTime() + ":\tLog file:\t" + logAbsolutePath + "\n")
+                    log.close()
                 except:
-                    raise ValueError("Fix.Fix:  The file can not be created or appended.")
+                    raise ValueError("Fix.__init__:  The file can not be created or appended.")
             else:
-                raise ValueError("Fix.Fix:  The file name violates the parameter specfication.")
+                raise ValueError("Fix.__init__:  The file name violates the parameter specfication.")
         else:
-            raise ValueError("Fix.Fix:  The file name violates the parameter specfication.")
+            raise ValueError("Fix.__init__:  The file name violates the parameter specfication.")
     
     
     def setSightingFile(self, sightingFile = None):
@@ -36,8 +37,40 @@ class Fix(object):
         except:
             raise ValueError("Fix.setSightingFile:  The file name is invalid.")
         sightingFileAbsPath = os.path.abspath(self.sightingFile)
-        self.log.write("LOG:\t" + self.getTime() + ":\tSighting file: " + sightingFileAbsPath + "\n")
+        log = open(self.logFileName, "a")
+        log.write("LOG:\t" + self.getTime() + ":\tSighting file: " + sightingFileAbsPath + "\n")
+        log.close()
         return sightingFileAbsPath
+    
+    
+    def setAriesFile(self, ariesFileName = ""):
+        pattern = re.compile(r'.+\.txt$')
+        result = pattern.match(ariesFileName)
+        if result:
+            try:
+                self.ariesFile = open(ariesFileName, "r")
+            except:
+                raise ValueError("Fix.setAriesFile:  The file name is invalid.")
+            ariesAbsPath = os.path.abspath(ariesFileName)
+            self.log.write("LOG:\t" + self.getTime() + ":\tAries file:\t" + ariesAbsPath + "\n")
+            return ariesAbsPath
+        else:
+            raise ValueError("Fix.setAriesFile:  The file name is invalid.")
+
+    
+    def setStarFile(self, starFileName = ""):
+        pattern = re.compile(r'.+\.txt$')
+        result = pattern.match(starFileName)
+        if result:
+            try:
+                self.starsFile = open(starFileName, "r")
+            except:
+                raise ValueError("Fix.setStarFile:  The file name is invalid.")
+            starsAbsPath = os.path.abspath(starFileName)
+            self.log.write("LOG:\t" + self.getTime() + ":\tStar file:\t" + starsAbsPath + "\n")
+            return starsAbsPath
+        else:
+            raise ValueError("Fix.setStarFile:  The file name is invalid.")
     
     
     def getSightings(self):
@@ -80,10 +113,11 @@ class Fix(object):
                 aSighting.set_adjustedAltitude(self.calculateAdjustedAltitude(aSighting))
                 self.sigthingsList.append(aSighting)
             self.sigthingsList.sort(key=lambda Sighting:(Sighting.index, Sighting.body))
+            log = open(self.logFileName, "a")
             for sighting in self.sigthingsList:
-                self.log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\n")
-            self.log.write("LOG:\t" + self.getTime() + ":\tEnd of sighting file: " + self.sightingFile + "\n")
-            self.log.close()
+                log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\n")
+            log.write("LOG:\t" + self.getTime() + ":\tEnd of sighting file: " + self.sightingFile + "\n")
+            log.close()
             approximateLatitide = "0d0.0"
             approximateLongitide = "0d0.0"
             return (approximateLatitide, approximateLongitide)
@@ -93,9 +127,12 @@ class Fix(object):
         errorMessage = "Fix.getSightings:  The observed altitude is .LT. 0.1 arc-minutes."
         horizon = sighting.get_horizon()
         altitude = sighting.get_observation()
-        pressure = float(sighting.get_pressure())
-        temperature = float(sighting.get_temperature())
-        height = float(sighting.get_height())
+        try:
+            pressure = int(sighting.get_pressure())
+            temperature = float(sighting.get_temperature())
+            height = float(sighting.get_height())
+        except:
+            raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
         if height < 0:
             raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
         if temperature < -20 or temperature > 120:
@@ -109,10 +146,12 @@ class Fix(object):
         if miniArcAngle.compare(arcAngle) == 1:
             raise ValueError(errorMessage)
         else:
-            if horizon == "Natural":
+            if horizon == "natural" or horizon == "Natural":
                 dip = (-0.97 * sqrt(height)) / 60
-            else:
+            elif  horizon == "artificial" or horizon == "Artificial": 
                 dip = 0
+            else:
+                raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
             celsiusTemperature = (temperature - 32) / 1.8
             refraction = (-0.00452 * pressure) / (273 + celsiusTemperature) / tan(radians(altitude))           
             adjustedAltitude = altitude + dip + refraction
