@@ -1,6 +1,5 @@
-import datetime
-
-d1 = datetime.datetime.strptime('12/31/91', '%m/%d/%y')
-delta = datetime.timedelta(days=3)
-d2 = d1 + delta
-print d2.strftime("%m/%d/%y")
+fileK = open("log.txt")
+lineK = fileK.readline()
+fileK.close()
+listK = lineK.split("\t")
+print listK
