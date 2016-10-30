@@ -1,7 +1,7 @@
 import re
 import time
+import datetime
 import os
-from datetime import datetime
 import xml.etree.ElementTree as ET 
 from Navigation.prod.Sighting import Sighting
 from math import sqrt, radians
@@ -231,7 +231,7 @@ class Fix(object):
       
     def dateFormatCheck(self, dateValue):
         try:
-            datetime.strptime(dateValue, "%Y-%m-%d")
+            time.strptime(dateValue, "%Y-%m-%d")
             return True
         except:
             return False
@@ -239,7 +239,7 @@ class Fix(object):
     
     def timeFormatCheck(self, timeValue):
         try:
-            datetime.strptime(timeValue, "%H:%M:%S")
+            time.strptime(timeValue, "%H:%M:%S")
             return True
         except:
             return False
@@ -361,12 +361,14 @@ class Fix(object):
         timeSet = timeSplitKey.split(time)
         if timeSet[0] == "23":
             nextTime = "0"
+            nextDate = self.dateCalculate(date, "1")
         else:
             nextTime = str(int(timeSet[0]) + 1)
+            nextDate = date
         ariesDataSplitKey = re.compile(r'\t|\n')
         s = float(timeSet[1]) * 60 + float(timeSet[2])
-        keyOne = date + "\t" + timeSet[0]
-        keyTwo = date + "\t" + nextTime
+        keyOne = date + "\t" + str(int(timeSet[0]))
+        keyTwo = nextDate + "\t" + nextTime
         for oneLine in self.ariesFile:
             if oneLine.find(keyOne) == 0:
                 ariesDataSet.append(ariesDataSplitKey.split(oneLine))
@@ -407,4 +409,11 @@ class Fix(object):
     def dateFormatSwitch(self, dateValue):
         temp = time.strptime(dateValue, "%Y-%m-%d")
         date = time.strftime("%m/%d/%y", temp)
-        return date   
+        return date
+    
+    
+    def dateCalculate(self, date, delta):
+        d1 = datetime.datetime.strptime(date, "%m/%d/%y")
+        days = datetime.timedelta(days = int(delta))
+        d2 = d1 + days
+        return d2.strftime("%m/%d/%y")
