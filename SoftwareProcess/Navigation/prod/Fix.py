@@ -15,6 +15,10 @@ class Fix(object):
         self.xmlDataTree = None
         self.sigthingsList = []
         self.sightingFile = None
+        self.ariesFile = None
+        self.starsFile = None
+        self.starNamesList = []
+        self.sightingErrors = 0
         if isinstance(logFile, str):
             if logFile != "":
                 try:
@@ -48,11 +52,15 @@ class Fix(object):
         result = pattern.match(ariesFileName)
         if result:
             try:
-                self.ariesFile = open(ariesFileName, "r")
+                openFile = open(ariesFileName, "r")
+                self.ariesFile = openFile.readlines()
+                openFile.close()
             except:
                 raise ValueError("Fix.setAriesFile:  The file name is invalid.")
             ariesAbsPath = os.path.abspath(ariesFileName)
-            self.log.write("LOG:\t" + self.getTime() + ":\tAries file:\t" + ariesAbsPath + "\n")
+            log = open(self.logFileName, "a")
+            log.write("LOG:\t" + self.getTime() + ":\tAries file:\t" + ariesAbsPath + "\n")
+            log.close()
             return ariesAbsPath
         else:
             raise ValueError("Fix.setAriesFile:  The file name is invalid.")
@@ -63,60 +71,73 @@ class Fix(object):
         result = pattern.match(starFileName)
         if result:
             try:
-                self.starsFile = open(starFileName, "r")
+                openFile = open(starFileName, "r")
+                self.starsFile = openFile.readlines()
+                openFile.close()
+                self.getStarNames()
             except:
                 raise ValueError("Fix.setStarFile:  The file name is invalid.")
             starsAbsPath = os.path.abspath(starFileName)
-            self.log.write("LOG:\t" + self.getTime() + ":\tStar file:\t" + starsAbsPath + "\n")
+            log = open(self.logFileName, "a")
+            log.write("LOG:\t" + self.getTime() + ":\tStar file:\t" + starsAbsPath + "\n")
+            log.close()
             return starsAbsPath
         else:
             raise ValueError("Fix.setStarFile:  The file name is invalid.")
     
     
     def getSightings(self):
-        if self.xmlDataTree == None:
-            raise ValueError("Fix.getSightings:  No sighting file has been set.")
+        if not self.fileSetCheck():
+            raise ValueError("Fix.getSightings:  some file has been set.")
         else:
             xmlDataRoot = self.xmlDataTree.getroot()
             for sighting in xmlDataRoot.findall("sighting"):
-                self.xmlDataCheck(sighting)
-                body = sighting.find("body").text
-                date = sighting.find("date").text
-                time = sighting.find("time").text
-                observation = sighting.find("observation").text
-                try:
-                    height = sighting.find("height").text
-                except:
-                    height = None
-                try:  
-                    temperature = sighting.find("temperature").text
-                except:
-                    temperature = None
-                try:
-                    pressure = sighting.find("pressure").text
-                except:
-                    pressure = None
-                try:
-                    horizon = sighting.find("horizon").text
-                except:
-                    horizon = None
-                aSighting = Sighting()
-                aSighting.set_body(body)
-                aSighting.set_date(date)
-                aSighting.set_time(time)
-                aSighting.set_observation(observation)
-                aSighting.set_height(height)
-                aSighting.set_temperature(temperature)
-                aSighting.set_pressure(pressure)
-                aSighting.set_horizon(horizon)
-                aSighting.set_index()
-                aSighting.set_adjustedAltitude(self.calculateAdjustedAltitude(aSighting))
-                self.sigthingsList.append(aSighting)
+                if self.xmlDataCheck(sighting):
+                    body = sighting.find("body").text
+                    date = sighting.find("date").text
+                    time = sighting.find("time").text
+                    observation = sighting.find("observation").text
+                    try:
+                        height = sighting.find("height").text
+                    except:
+                        height = None
+                    try:  
+                        temperature = sighting.find("temperature").text
+                    except:
+                        temperature = None
+                    try:
+                        pressure = sighting.find("pressure").text
+                    except:
+                        pressure = None
+                    try:
+                        horizon = sighting.find("horizon").text
+                    except:
+                        horizon = None
+                    aSighting = Sighting()
+                    aSighting.set_body(body)
+                    aSighting.set_date(date)
+                    aSighting.set_time(time)
+                    aSighting.set_observation(observation)
+                    aSighting.set_height(height)
+                    aSighting.set_temperature(temperature)
+                    aSighting.set_pressure(pressure)
+                    aSighting.set_horizon(horizon)
+                    aSighting.set_index()
+                    aSighting.set_adjustedAltitude(self.calculateAdjustedAltitude(aSighting))
+                    result = self.getLongitudeAndLatitude(aSighting)
+                    if result != False:
+                        aSighting.set_latitude(result[0])
+                        aSighting.set_longitude(result[1])
+                        self.sigthingsList.append(aSighting)
+                    else:
+                        self.sightingErrors += 1
+                else:
+                    self.sightingErrors += 1
             self.sigthingsList.sort(key=lambda Sighting:(Sighting.index, Sighting.body))
             log = open(self.logFileName, "a")
             for sighting in self.sigthingsList:
-                log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\n")
-            log.write("LOG:\t" + self.getTime() + ":\tEnd of sighting file: " + self.sightingFile + "\n")
+                log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\t" + sighting.get_latitude() + "\t" + sighting.get_longitude() + "\n")
+            log.write("LOG:\t" + self.getTime() + ":\tSighting error:" + "\t" + str(self.sightingErrors) + "\n")
             log.close()
             approximateLatitide = "0d0.0"
             approximateLongitide = "0d0.0"
@@ -124,40 +145,23 @@ class Fix(object):
     
     
     def calculateAdjustedAltitude(self, sighting):
-        errorMessage = "Fix.getSightings:  The observed altitude is .LT. 0.1 arc-minutes."
         horizon = sighting.get_horizon()
         altitude = sighting.get_observation()
-        try:
-            pressure = int(sighting.get_pressure())
-            temperature = float(sighting.get_temperature())
-            height = float(sighting.get_height())
-        except:
-            raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
-        if height < 0:
-            raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
-        if temperature < -20 or temperature > 120:
-            raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
-        if pressure < 100 or pressure > 1100:
-            raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
+        pressure = int(sighting.get_pressure())
+        temperature = float(sighting.get_temperature())
+        height = float(sighting.get_height())
         arcAngle = Angle()
         arcAngle.setDegrees(altitude)
-        miniArcAngle = Angle()
-        miniArcAngle.setDegreesAndMinutes("0d0.1")
-        if miniArcAngle.compare(arcAngle) == 1:
-            raise ValueError(errorMessage)
-        else:
-            if horizon == "natural" or horizon == "Natural":
-                dip = (-0.97 * sqrt(height)) / 60
-            elif  horizon == "artificial" or horizon == "Artificial": 
-                dip = 0
-            else:
-                raise ValueError("Fix.getSightings:  Errors are encountered in the sighting file.")
-            celsiusTemperature = (temperature - 32) / 1.8
-            refraction = (-0.00452 * pressure) / (273 + celsiusTemperature) / tan(radians(altitude))           
-            adjustedAltitude = altitude + dip + refraction
-            resultAngle = Angle()
-            resultAngle.setDegrees(adjustedAltitude)
-            return resultAngle.getString()
+        if horizon == "natural":
+            dip = (-0.97 * sqrt(height)) / 60
+        elif  horizon == "artificial": 
+            dip = 0
+        celsiusTemperature = (temperature - 32) / 1.8
+        refraction = (-0.00452 * pressure) / (273 + celsiusTemperature) / tan(radians(altitude))           
+        adjustedAltitude = altitude + dip + refraction
+        resultAngle = Angle()
+        resultAngle.setDegrees(adjustedAltitude)
+        return resultAngle.getString()
     
     
     def getTime(self):
@@ -165,34 +169,66 @@ class Fix(object):
         return myTime
     
     
+    def fileSetCheck(self):
+        if self.ariesFile == None or self.starsFile == None or self.xmlDataTree == None:
+            return False
+        else:
+            return True
+    
+    
     def xmlDataCheck(self, sighting):
-        errorMessage = "Fix.getSightings:  Errors are encountered in the sighting file."
-        anAnlge = Angle()
-        ninetyAngle = Angle()
-        ninetyAngle.setDegrees(90)
         try:
             body = sighting.find("body").text
             date = sighting.find("date").text
             time = sighting.find("time").text
             observation = sighting.find("observation").text
         except:
-            raise ValueError(errorMessage)
+            return False
         try:
-            anAnlge.setDegreesAndMinutes(observation)
+            height = sighting.find("height").text
         except:
-            raise ValueError(errorMessage)
-        if body == None or body == "":
-            raise ValueError(errorMessage)
-        elif not self.dateFormatCheck(date):
-            raise ValueError(errorMessage)
-        elif not self.timeFormatCheck(time):
-            raise ValueError(errorMessage)
-        elif not self.observationMinutesCheck(observation):
-            raise ValueError(errorMessage)
-        elif ninetyAngle.compare(anAnlge) != 1:
-            raise ValueError(errorMessage)
+            height = "0"
+        try:  
+            temperature = sighting.find("temperature").text
+        except:
+            temperature = "72"
+        try:
+            pressure = sighting.find("pressure").text
+        except:
+            pressure = "1010"
+        try:
+            horizon = sighting.find("horizon").text
+        except:
+            horizon = "natural"
+        # Data Format Check
+        if not self.bodyFormatCheck(body):
+            return False
+        if not self.dateFormatCheck(date):
+            return False
+        if not self.timeFormatCheck(time):
+            return False
+        if not self.observationFormatCheck(observation):
+            return False
+        if not self.heightFormatCheck(height):
+            return False
+        if not self.temperatureFormatCheck(temperature):
+            return False
+        if not self.pressureFormatCheck(pressure):
+            return False
+        if not self.horizonFormatCheck(horizon):
+            return False
+        return True
+        
     
-    
+    def bodyFormatCheck(self,bodyValue):
+        if bodyValue == None or bodyValue == "":
+            return False
+        elif bodyValue not in self.starNamesList:
+            return False
+        else:
+            return True
+
+      
     def dateFormatCheck(self, dateValue):
         try:
             datetime.strptime(dateValue, "%Y-%m-%d")
@@ -209,10 +245,166 @@ class Fix(object):
             return False
         
         
+    def observationFormatCheck(self, observationValue):
+        anAngle = Angle()
+        minimumAngle = Angle()
+        minimumAngle.setDegreesAndMinutes("0d0.1")
+        try:
+            anAngle.setDegreesAndMinutes(observationValue)
+        except:
+            return False
+        if self.observationMinutesCheck(observationValue):
+            if anAngle.getDegrees() > minimumAngle.getDegrees() and anAngle.getDegrees() < 90:
+                return True
+            else:
+                return False
+        else:
+            return False
+        
+    
     def observationMinutesCheck(self, observationValue):
         pattern = re.compile(r'-?\d+\.?\d?')
         result = pattern.findall(observationValue)
-        if float(result[1]) < 60:
+        if float(result[1]) >= 0 and float(result[1]) < 60:
             return True
         else:
             return False
+        
+    
+    def heightFormatCheck(self, heightValue):
+        try:
+            height = float(heightValue)
+        except:
+            return False
+        if height < 0:
+            return False
+        else:
+            return True
+        
+        
+    def temperatureFormatCheck(self, temperatureValue):
+        try:
+            temperature = int(temperatureValue)
+        except:
+            return False
+        if temperature >= -20 and temperature <= 120:
+            return True
+        else:
+            return False
+    
+    
+    def pressureFormatCheck(self, pressureValue):
+        try:
+            pressure = int(pressureValue)
+        except:
+            return False
+        if pressure >=100 and pressure <= 1100:
+            return True
+        else:
+            return False
+        
+        
+    def horizonFormatCheck(self, horizonValue):
+        horizon = horizonValue.lower()
+        if horizon == "natural" or horizon == "artificial":
+            return True
+        else:
+            return False
+        
+        
+    def getLongitudeAndLatitude(self, sighting):
+        body = sighting.get_body()
+        date = self.dateFormatSwitch(sighting.get_date())
+        time = sighting.get_time()
+        longtitude = Angle()
+        SHA = Angle()
+        GHA = self.getGHA(date, time)
+        starDataSet = self.getLatitudeAndSHA(body, date)
+        if starDataSet == False or GHA == False:
+            return False
+        else:
+            SHA.setDegreesAndMinutes(starDataSet[2])
+            latitude = starDataSet[3]
+            longtitude.add(GHA)
+            longtitude.add(SHA)
+            return(latitude, longtitude.getString())
+        
+        
+    def getLatitudeAndSHA(self, body, date):
+        spliteKey = re.compile(r'\t|\n')        
+        starsDataSetList = []
+        starDataSet = [] 
+        for oneLine in self.starsFile:
+            if oneLine.find(body) == 0:
+                dataSet = spliteKey.split(oneLine)
+                if len(dataSet) == 5:
+                    starsDataSetList.append(dataSet)
+        starsDataSetList.sort(key=lambda starsDataSetList: starsDataSetList[1])
+        for i in range(len(starsDataSetList)):
+            if starsDataSetList[i][1] > date:
+                starDataSet = starsDataSetList[i-1]
+                break
+            if i == (len(starsDataSetList) - 1):
+                starDataSet = starsDataSetList[i]
+        if self.starDataCheck(starDataSet[2], starDataSet[3]):
+            return starDataSet
+        else:
+            return False
+    
+    
+    def getGHA(self, date, time):
+        GHA1 = Angle()
+        GHA2 = Angle()
+        GHA = Angle()
+        ariesDataSet = []
+        timeSplitKey = re.compile(r':')
+        timeSet = timeSplitKey.split(time)
+        if timeSet[0] == "23":
+            nextTime = "0"
+        else:
+            nextTime = str(int(timeSet[0]) + 1)
+        ariesDataSplitKey = re.compile(r'\t|\n')
+        s = float(timeSet[1]) * 60 + float(timeSet[2])
+        keyOne = date + "\t" + timeSet[0]
+        keyTwo = date + "\t" + nextTime
+        for oneLine in self.ariesFile:
+            if oneLine.find(keyOne) == 0:
+                ariesDataSet.append(ariesDataSplitKey.split(oneLine))
+            if oneLine.find(keyTwo) == 0:
+                ariesDataSet.append(ariesDataSplitKey.split(oneLine))
+        if len(ariesDataSet) == 2:
+            try:
+                GHA1.setDegreesAndMinutes(ariesDataSet[0][2])
+                GHA2.setDegreesAndMinutes(ariesDataSet[1][2])
+            except:
+                return False
+            calculation = abs(GHA2.getDegrees() - GHA1.getDegrees()) * (s / 3600) + GHA1.getDegrees()
+            GHA.setDegrees(calculation)
+            return GHA
+        else:
+            return False
+    
+    
+    def starDataCheck(self, SHA, latitude):
+        SHAAngle = Angle()
+        latitudeAngle = Angle()
+        try:
+            SHAAngle.setDegreesAndMinutes(SHA)
+            latitudeAngle.setDegreesAndMinutes(latitude)
+        except:
+            return False
+        return True
+    
+    
+    def getStarNames(self):
+        splitKey = re.compile(r'\t|\n')
+        for oneLine in self.starsFile:
+            dataSet = splitKey.split(oneLine)
+            if len(dataSet) == 5 and dataSet[0] not in self.starNamesList:
+                self.starNamesList.append(dataSet[0]) 
+                
+    
+    def dateFormatSwitch(self, dateValue):
+        temp = time.strptime(dateValue, "%Y-%m-%d")
+        date = time.strftime("%m/%d/%y", temp)
+        return date   

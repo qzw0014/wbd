@@ -1,6 +1,6 @@
 from Navigation.prod.Fix import Fix
 myFix = Fix()
-myFix.setSightingFile("sfNeedSort.xml")
+myFix.setSightingFile("CA03TestSightingFile.xml")
+myFix.setAriesFile("aries.txt")
+myFix.setStarFile("stars.txt")
 myFix.getSightings()
-for sighting in myFix.sigthingsList:
-    print sighting.get_index(), sighting.get_adjustedAltitude()
