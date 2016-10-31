@@ -1,6 +1,7 @@
 from Navigation.prod.Angle import Angle
 class Sighting(object):
 
+    
     def __init__(self):
         self.body = ""
         self.date = ""
@@ -12,6 +13,8 @@ class Sighting(object):
         self.horizon = ""
         self.index = ""
         self.adjustedAltitude = Angle()
+        self.longitude = Angle()
+        self.lattitude = ""
 
 
 #    Getter
@@ -33,6 +36,7 @@ class Sighting(object):
     
     def get_observation(self):
         return self.observation.getDegrees()
+
 
     def get_height(self):
         return self.height
@@ -57,6 +61,14 @@ class Sighting(object):
     def get_adjustedAltitude(self):
         return self.adjustedAltitude.getString()
     
+    
+    def get_longitude(self):
+        return self.longitude.getString()
+    
+    
+    def get_latitude(self):
+        return self.lattitude
+
 
 #    Setter
     def set_body(self, value):
@@ -93,10 +105,10 @@ class Sighting(object):
         self.pressure = value
 
 
-    def set_horizon(self, value = "Natural"):
+    def set_horizon(self, value = "natural"):
         if value == None:
-            value = "Natural"
-        self.horizon = value
+            value = "natural"
+        self.horizon = value.lower()
        
         
     def set_index(self):
@@ -105,3 +117,11 @@ class Sighting(object):
     
     def set_adjustedAltitude(self, value):
         self.adjustedAltitude.setDegreesAndMinutes(value)
+        
+    
+    def set_longitude(self, value):
+        self.longitude.setDegreesAndMinutes(value)
+        
+        
+    def set_latitude(self, value):
+        self.lattitude = value
