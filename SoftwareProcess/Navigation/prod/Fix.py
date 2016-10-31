@@ -137,7 +137,7 @@ class Fix(object):
             log = open(self.logFileName, "a")
             for sighting in self.sigthingsList:
                 log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\t" + sighting.get_latitude() + "\t" + sighting.get_longitude() + "\n")
-            log.write("LOG:\t" + self.getTime() + ":\tSighting error:" + "\t" + str(self.sightingErrors) + "\n")
+            log.write("LOG:\t" + self.getTime() + ":\tSighting errors:" + "\t" + str(self.sightingErrors) + "\n")
             log.close()
             approximateLatitide = "0d0.0"
             approximateLongitide = "0d0.0"
