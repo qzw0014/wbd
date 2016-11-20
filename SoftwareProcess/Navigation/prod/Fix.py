@@ -47,17 +47,20 @@ class Fix(object):
         return sightingFileAbsPath
     
     
-    def setAriesFile(self, ariesFileName = ""):
+    def setAriesFile(self, ariesFile = ""):
         pattern = re.compile(r'.+\.txt$')
-        result = pattern.match(ariesFileName)
+        try:
+            result = pattern.match(ariesFile)
+        except:
+            raise ValueError("Fix.setAriesFile:  The file name is invalid.")
         if result:
             try:
-                openFile = open(ariesFileName, "r")
+                openFile = open(ariesFile, "r")
                 self.ariesFile = openFile.readlines()
                 openFile.close()
             except:
                 raise ValueError("Fix.setAriesFile:  The file name is invalid.")
-            ariesAbsPath = os.path.abspath(ariesFileName)
+            ariesAbsPath = os.path.abspath(ariesFile)
             log = open(self.logFileName, "a")
             log.write("LOG:\t" + self.getTime() + ":\tAries file:\t" + ariesAbsPath + "\n")
             log.close()
@@ -66,18 +69,21 @@ class Fix(object):
             raise ValueError("Fix.setAriesFile:  The file name is invalid.")
 
     
-    def setStarFile(self, starFileName = ""):
+    def setStarFile(self, starFile = ""):
         pattern = re.compile(r'.+\.txt$')
-        result = pattern.match(starFileName)
+        try:
+            result = pattern.match(starFile)
+        except:
+            raise ValueError("Fix.setStarFile:  The file name is invalid.")
         if result:
             try:
-                openFile = open(starFileName, "r")
+                openFile = open(starFile, "r")
                 self.starsFile = openFile.readlines()
                 openFile.close()
                 self.getStarNames()
             except:
                 raise ValueError("Fix.setStarFile:  The file name is invalid.")
-            starsAbsPath = os.path.abspath(starFileName)
+            starsAbsPath = os.path.abspath(starFile)
             log = open(self.logFileName, "a")
             log.write("LOG:\t" + self.getTime() + ":\tStar file:\t" + starsAbsPath + "\n")
             log.close()
@@ -86,7 +92,7 @@ class Fix(object):
             raise ValueError("Fix.setStarFile:  The file name is invalid.")
     
     
-    def getSightings(self):
+    def getSightings(self, assumedLatitude = "0d0.0", assumedLongitude = "0d0.0"):
         if not self.fileSetCheck():
             raise ValueError("Fix.getSightings:  some file has been set.")
         else:
@@ -373,8 +379,8 @@ class Fix(object):
             if oneLine.find(keyOne) == 0:
                 ariesDataSet.append(ariesDataSplitKey.split(oneLine))
             if oneLine.find(keyTwo) == 0:
-                ariesDataSet.append(ariesDataSplitKey.split(oneLine))
-        if len(ariesDataSet) == 2:
+                ariesDataSet.append(ariesDataSplitKey.split(oneLine))            
+        if len(ariesDataSet) >= 2:
             try:
                 GHA1.setDegreesAndMinutes(ariesDataSet[0][2])
                 GHA2.setDegreesAndMinutes(ariesDataSet[1][2])
