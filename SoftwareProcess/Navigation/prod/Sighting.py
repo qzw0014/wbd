@@ -1,3 +1,4 @@
+import re
 from Navigation.prod.Angle import Angle
 class Sighting(object):
 
@@ -15,6 +16,10 @@ class Sighting(object):
         self.adjustedAltitude = Angle()
         self.longitude = Angle()
         self.lattitude = ""
+        self.assumedLatitude = ""
+        self.assumedLongitude = ""
+        self.distanceAdjustment = ""
+        self.azimuthAdjustment = ""
 
 
 #    Getter
@@ -68,8 +73,30 @@ class Sighting(object):
     
     def get_latitude(self):
         return self.lattitude
-
-
+    
+    
+    def get_assumedLatitude(self):
+        return self.assumedLatitude
+    
+    
+    def get_assumedLatitudeWithoutOrientation(self):
+        latSplitKey = re.compile(r'(\d+d\d+\.?\d?$)')
+        resultList = latSplitKey.split(self.assumedLatitude)
+        return resultList[1]
+    
+    
+    def get_assumedlongitude(self):
+        return self.assumedLongitude
+    
+    
+    def get_distanceAdjustment(self):
+        return self.distanceAdjustment
+    
+    
+    def get_azimuthAdjustment(self):
+        return self.azimuthAdjustment
+    
+    
 #    Setter
     def set_body(self, value):
         self.body = value
@@ -125,3 +152,19 @@ class Sighting(object):
         
     def set_latitude(self, value):
         self.lattitude = value
+        
+    
+    def set_assumedLatitude(self,value):
+        self.assumedLatitude = value
+    
+    
+    def set_assumedLongitude(self, value):
+        self.assumedLongitude = value
+    
+    
+    def set_distanceAdjustment(self, value):
+        self.distanceAdjustment = value
+        
+    
+    def set_azimuthAdjustment(self, value):
+        self.azimuthAdjustment = value

@@ -4,9 +4,11 @@ import datetime
 import os
 import xml.etree.ElementTree as ET 
 from Navigation.prod.Sighting import Sighting
-from math import sqrt, radians
+from math import sqrt, radians, sin, cos, degrees
 from math import tan
 from Navigation.prod.Angle import Angle
+from Navigation.sandbox.SightingSandBox import result
+from numpy import arcsin, arccos
 class Fix(object):
     
     
@@ -93,6 +95,8 @@ class Fix(object):
     
     
     def getSightings(self, assumedLatitude = "0d0.0", assumedLongitude = "0d0.0"):
+        if not self.getSightingInputCheak(assumedLatitude, assumedLongitude):
+            raise ValueError("Fix.getSightings:  The parameters violate the specification.")
         if not self.fileSetCheck():
             raise ValueError("Fix.getSightings:  some file has been set.")
         else:
@@ -134,19 +138,27 @@ class Fix(object):
                     if result != False:
                         aSighting.set_latitude(result[0])
                         aSighting.set_longitude(result[1])
+                        aSighting.set_assumedLatitude(assumedLatitude)
+                        aSighting.set_assumedLongitude(assumedLongitude)
+                        distanceAndAzimuthAdjustment = self.calculateDistanceAndAzimuthAdjustment(aSighting)
+                        aSighting.set_distanceAdjustment(distanceAndAzimuthAdjustment[0])
+                        aSighting.set_azimuthAdjustment(distanceAndAzimuthAdjustment[1])
                         self.sigthingsList.append(aSighting)
                     else:
                         self.sightingErrors += 1
                 else:
                     self.sightingErrors += 1
             self.sigthingsList.sort(key=lambda Sighting:(Sighting.index, Sighting.body))
+            approLatAndLon = self.calculateApproximateLatAndLon()
+            approximateLatitide = approLatAndLon[0]
+            approximateLongitide = approLatAndLon[1]
             log = open(self.logFileName, "a")
             for sighting in self.sigthingsList:
-                log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\t" + sighting.get_latitude() + "\t" + sighting.get_longitude() + "\n")
+                log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\t" + sighting.get_latitude() 
+                          + "\t" + sighting.get_longitude() + "\t" + sighting.get_assumedLatitude() + "\t" + sighting.get_assumedlongitude() + "\t" + sighting.get_azimuthAdjustment() + "\t" + sighting.get_distanceAdjustment() + "\n")
             log.write("LOG:\t" + self.getTime() + ":\tSighting errors:" + "\t" + str(self.sightingErrors) + "\n")
             log.close()
-            approximateLatitide = "0d0.0"
-            approximateLongitide = "0d0.0"
+            
             return (approximateLatitide, approximateLongitide)
     
     
@@ -270,7 +282,10 @@ class Fix(object):
     
     def observationMinutesCheck(self, observationValue):
         pattern = re.compile(r'-?\d+\.?\d?')
-        result = pattern.findall(observationValue)
+        try:
+            result = pattern.findall(observationValue)
+        except:
+            return False
         if float(result[1]) >= 0 and float(result[1]) < 60:
             return True
         else:
@@ -423,3 +438,129 @@ class Fix(object):
         days = datetime.timedelta(days = int(delta))
         d2 = d1 + days
         return d2.strftime("%m/%d/%y")
+    
+    
+    def getSightingInputCheak(self, assumedLatitude, assumedLongitude):
+        if self.assumedLatitudeCheck(assumedLatitude) and self.assumedLongitudeCheck(assumedLongitude):
+            return True
+        else:
+            return False
+        
+    
+    def assumedLatitudeCheck(self, assumedLatitude):
+        splitKey = re.compile(r'(\d+d\d+\.?\d?$)')
+        try:
+            resultList = splitKey.split(assumedLatitude)
+        except:
+            return False
+        if resultList[0] == "N" or resultList[0] == "S":
+            if self.observationFormatCheck(resultList[1]):
+                if self.observationMinutesCheck(resultList[1]):
+                    return True
+                else:
+                    return False
+            elif resultList[0] == "" and resultList[1] == "0d0.0":
+                return True
+            else:
+                return False
+        
+        
+    def assumedLongitudeCheck(self, assumedLongitude):
+        anAngle = Angle()
+        try:
+            anAngle.setDegreesAndMinutes(assumedLongitude)
+        except:
+            return False
+        pattern = re.compile(r'\d+\.?\d?')
+        try:
+            result = pattern.findall(assumedLongitude)
+        except:
+            return False
+        if float(result[1]) >= 0 and float(result[1]) < 60:
+            if float(result[0]) >= 0 and float(result[0]) < 360:
+                return True
+            else:
+                return False
+        else:
+            return False
+             
+         
+    def calculateApproximateLatAndLon(self):
+        if len(self.sigthingsList) == 0:
+            return
+        else:
+            assLatAngle = Angle()
+            assLonAngle = Angle()
+            assLatAngle.setDegreesAndMinutes(self.sigthingsList[0].get_assumedLatitudeWithoutOrientation())
+            assLonAngle.setDegreesAndMinutes(self.sigthingsList[0].get_assumedlongitude())
+            assumedLatitude = assLatAngle.getDegrees()
+            assumedLongitude = assLonAngle.getDegrees()
+            sumOfLat = 0.0
+            sumOfLon = 0.0
+            for oneSighting in self.sigthingsList:
+                azimuthAngle = Angle()
+                distanceAdjustment = float(oneSighting.get_distanceAdjustment())
+                azimuthAngle.setDegreesAndMinutes(oneSighting.get_azimuthAdjustment())
+                sumOfLat = sumOfLat + distanceAdjustment + cos(radians(azimuthAngle.getDegrees()))
+                sumOfLon = sumOfLon + distanceAdjustment + sin(radians(azimuthAngle.getDegrees()))
+            approximateLatitude = assumedLatitude + sumOfLat / 60
+            approximateLongitude = assumedLongitude + sumOfLon / 60
+            return(approximateLatitude, approximateLongitude)
+    
+    
+    def calculateDistanceAndAzimuthAdjustment(self, sighting):
+        aziAngle = Angle()
+        assumedLongitude = sighting.get_assumedlongitude()
+        assumedLatitude = sighting.get_assumedLatitudeWithoutOrientation()
+        geoPosLongitude = sighting.get_longitude()
+        geoPosLatitude = sighting.get_latitude()
+        adjustedAltitude = sighting.get_adjustedAltitude()
+        LHA = self.getLHA(assumedLongitude, geoPosLongitude)
+        corAltAndInterDis = self.getCorrectedAltitude(geoPosLatitude, assumedLatitude, LHA)
+        correctedAltitude = corAltAndInterDis[0]
+        intermediateDistance = corAltAndInterDis[1]
+        distanceAdjustment = self.getDistanceAdjustment(adjustedAltitude, correctedAltitude)
+        azimuthAdjustment = self.getAzimuthAdjustment(geoPosLatitude, assumedLatitude, correctedAltitude, intermediateDistance)
+        aziAngle.setDegrees(azimuthAdjustment)
+        return(str(distanceAdjustment), aziAngle.getString())
+    
+    
+    def getLHA(self, assumedLongitude, geoPosLongitude):
+        assLonAngle = Angle()
+        geoPosLonAngle = Angle()
+        assLonAngle.setDegreesAndMinutes(assumedLongitude)
+        geoPosLonAngle.setDegreesAndMinutes(geoPosLongitude)
+        LHA = geoPosLonAngle.getDegrees() + assLonAngle.getDegrees()
+        return LHA
+    
+    
+    def getCorrectedAltitude(self, geoPosLatitude, assumedLatitude, LHA):
+        geoPosLatAngle = Angle()
+        assLatAngle = Angle()
+        geoPosLatAngle.setDegreesAndMinutes(geoPosLatitude)
+        assLatAngle.setDegreesAndMinutes(assumedLatitude)
+        intermediateDistance = (sin(radians(geoPosLatAngle.getDegrees())) * sin(radians(assLatAngle.getDegrees()))) + (cos(radians(geoPosLatAngle.getDegrees())) * cos(radians(assLatAngle.getDegrees())) * cos(radians(LHA)))
+        correctedAltitude = arcsin(intermediateDistance)
+        correctedAltitude = degrees(correctedAltitude)
+        return (correctedAltitude, intermediateDistance)
+    
+    
+    def getDistanceAdjustment(self, adjustedAltitude, correctedAltitude):
+        adjAltAngle = Angle()
+        adjAltAngle.setDegreesAndMinutes(adjustedAltitude)
+        distanceAdjustment = correctedAltitude - adjAltAngle.getDegrees()
+        distanceAdjustment = int(round(distanceAdjustment * 60))
+        return distanceAdjustment
+    
+    
+    def getAzimuthAdjustment(self, geoPosLatitude, assumedLatitude, correctedAltitude, intermediateDistance):
+        geoPosLatAngle = Angle()
+        assLatAngle = Angle()
+        geoPosLatAngle.setDegreesAndMinutes(geoPosLatitude)
+        assLatAngle.setDegreesAndMinutes(assumedLatitude)
+        mem = (sin(radians(geoPosLatAngle.getDegrees())) - sin(radians(assLatAngle.getDegrees())) * intermediateDistance)
+        deno = (cos(radians(assLatAngle.getDegrees())) * cos(radians(correctedAltitude)))
+        tem = (mem / deno)
+        azimuthAdjustment = arccos(tem)
+        azimuthAdjustment = degrees(azimuthAdjustment)
+        return azimuthAdjustment

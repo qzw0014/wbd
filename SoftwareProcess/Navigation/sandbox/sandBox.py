@@ -1,5 +1,3 @@
-fileK = open("log.txt")
-lineK = fileK.readline()
-fileK.close()
-listK = lineK.split("\t")
-print listK
+import math
+y = math.acos(0.5)
+print math.degrees(y)

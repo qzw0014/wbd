@@ -1,6 +1,8 @@
 from Navigation.prod.Fix import Fix
 myFix = Fix()
-myFix.setSightingFile("CA03TestSightingFile.xml")
+myFix.setSightingFile("CA05sightings.xml")
 myFix.setAriesFile("aries.txt")
 myFix.setStarFile("stars.txt")
-myFix.getSightings()
+assumedLatitude = "N27d59.5"
+assumedLongitude = "85d33.4"
+print myFix.getSightings(assumedLatitude, assumedLongitude)

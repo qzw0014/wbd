@@ -68,6 +68,10 @@ class Angle():
 
     def getDegrees(self):
         return float(int(self.degrees) + (self.minutes / 60))
+    
+    def getStringWithWholeMinutes(self):
+        stringResult  = str(int(self.degrees)) + "d" + str(int(round(self.minutes)))
+        return stringResult
    
     def isNumber(self, value):
         try:
