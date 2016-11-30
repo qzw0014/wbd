@@ -1,5 +1,6 @@
 import re
 class Angle():
+        
     def __init__(self):
         self.degrees = 0
         self.minutes = 0
