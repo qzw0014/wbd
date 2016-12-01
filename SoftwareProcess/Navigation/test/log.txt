@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-LOG:	2016-10-27 23:04:40-06:00:	Start of log
-LOG:	2016-10-27 23:04:40-06:00:	Start of sighting file: CA02_300_InvalidHorizon.xml
-=======
-LOG:	2016-10-30 20:27:46-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/log.txt
->>>>>>> refs/heads/CA03

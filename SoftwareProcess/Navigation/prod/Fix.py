@@ -489,11 +489,9 @@ class Fix(object):
         if len(self.sigthingsList) == 0:
             return
         else:
-            assLatAngle = Angle()
             assLonAngle = Angle()
-            assLatAngle.setDegreesAndMinutes(self.sigthingsList[0].get_assumedLatitudeWithoutOrientation())
             assLonAngle.setDegreesAndMinutes(self.sigthingsList[0].get_assumedlongitude())
-            assumedLatitude = assLatAngle.getDegrees()
+            assumedLatitude = self.latitudeConverter(self.sigthingsList[0].get_assumedLatitudeWithoutOrientation())
             assumedLongitude = assLonAngle.getDegrees()
             sumOfLat = 0.0
             sumOfLon = 0.0

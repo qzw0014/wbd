@@ -82,7 +82,14 @@ class Sighting(object):
     def get_assumedLatitudeWithoutOrientation(self):
         latSplitKey = re.compile(r'(\d+d\d+\.?\d?$)')
         resultList = latSplitKey.split(self.assumedLatitude)
-        return resultList[1]
+        if resultList[0] == "N":
+            return resultList[1]
+        elif resultList[0] == "S":
+            tem = "-" + resultList[1]
+            return tem
+        else:
+            return resultList[0]
+            
     
     
     def get_assumedlongitude(self):
