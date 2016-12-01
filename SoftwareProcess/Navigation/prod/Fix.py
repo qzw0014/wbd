@@ -276,7 +276,7 @@ class Fix(object):
         except:
             return False
         if self.observationMinutesCheck(observationValue):
-            if anAngle.getDegrees() > minimumAngle.getDegrees() and anAngle.getDegrees() < 90:
+            if anAngle.getDegrees() >= minimumAngle.getDegrees() and anAngle.getDegrees() < 90:
                 return True
             else:
                 return False
@@ -452,6 +452,8 @@ class Fix(object):
         
     
     def assumedLatitudeCheck(self, assumedLatitude):
+        if assumedLatitude == "":
+            return False
         splitKey = re.compile(r'(\d+d\d+\.?\d?$)')
         try:
             resultList = splitKey.split(assumedLatitude)
@@ -475,7 +477,7 @@ class Fix(object):
             anAngle.setDegreesAndMinutes(assumedLongitude)
         except:
             return False
-        pattern = re.compile(r'\d+\.?\d?')
+        pattern = re.compile(r'-?\d+\.?\d?')
         try:
             result = pattern.findall(assumedLongitude)
         except:

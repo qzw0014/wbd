@@ -5,3 +5,133 @@ LOG:	2016-11-30 21:06:24-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/Soft
 LOG:	2016-11-30 21:06:24-06:00:	Pollux	2017-04-17	23:50:14	15d1.5	27d59.1	87d30.8	N27d59.5	85d33.4	7d21.1	-2919
 LOG:	2016-11-30 21:06:24-06:00:	Sighting errors:	1
 LOG:	2016-11-30 21:06:24-06:00:	Approximate latitude:	S20d15.5	Approximate longitude:	79d19.9
+LOG:	2016-12-01 12:12:35-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:14:15-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:15:16-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:15:16-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:15:16-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:15:16-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:16:34-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:16:34-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:16:34-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:16:34-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:16:50-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:16:50-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:16:50-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:16:50-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:17:02-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:17:02-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:17:02-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:17:02-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:17:11-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:17:11-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:17:11-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:17:11-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:17:25-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:17:25-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:17:25-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:17:25-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:17:35-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:17:35-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:17:35-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:17:35-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:17:51-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:17:51-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:17:51-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:17:51-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:29:08-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:29:08-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:29:08-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:29:08-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:29:23-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:29:23-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:29:23-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:29:23-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:29:40-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:29:40-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:29:40-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:29:40-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:29:51-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:29:51-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:29:51-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:29:51-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:30:02-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:30:02-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:30:02-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:30:02-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:30:16-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:30:16-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:30:16-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:30:17-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:30:17-06:00:	Rigil Kent.	2017-03-24	23:41:56	35d08.1	-60d53.8	318d09.9	S18d3	-108d55	166d07.6	-2566
+LOG:	2016-12-01 12:30:17-06:00:	Acrux	2017-03-24	23:42:06	48d33.9	-63d11.3	351d30.3	S18d3	-108d55	156d19.0	-2642
+LOG:	2016-12-01 12:30:17-06:00:	Aldebaran	2017-03-24	23:43:12	13d42.3	16d32.3	109d27.8	S18d3	-108d55	0d55.4	2502
+LOG:	2016-12-01 12:30:17-06:00:	Sighting errors:	0
+LOG:	2016-12-01 12:30:17-06:00:	Approximate latitude:	N105d29.3	Approximate longitude:	223d48.8
+LOG:	2016-12-01 12:31:23-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:31:23-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:31:23-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:31:23-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:31:23-06:00:	Rigil Kent.	2017-03-24	23:41:56	35d08.1	-60d53.8	318d09.9	S18d3	-108d55	166d07.6	-2566
+LOG:	2016-12-01 12:31:23-06:00:	Acrux	2017-03-24	23:42:06	48d33.9	-63d11.3	351d30.3	S18d3	-108d55	156d19.0	-2642
+LOG:	2016-12-01 12:31:23-06:00:	Aldebaran	2017-03-24	23:43:12	13d42.3	16d32.3	109d27.8	S18d3	-108d55	0d55.4	2502
+LOG:	2016-12-01 12:31:23-06:00:	Sighting errors:	0
+LOG:	2016-12-01 12:31:23-06:00:	Approximate latitude:	N105d29.3	Approximate longitude:	223d48.8
+LOG:	2016-12-01 12:31:33-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:31:33-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:31:33-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:31:33-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:31:33-06:00:	Rigil Kent.	2017-03-24	23:41:56	35d08.1	-60d53.8	318d09.9	S18d3	-108d55	166d07.6	-2566
+LOG:	2016-12-01 12:31:33-06:00:	Acrux	2017-03-24	23:42:06	48d33.9	-63d11.3	351d30.3	S18d3	-108d55	156d19.0	-2642
+LOG:	2016-12-01 12:31:33-06:00:	Aldebaran	2017-03-24	23:43:12	13d42.3	16d32.3	109d27.8	S18d3	-108d55	0d55.4	2502
+LOG:	2016-12-01 12:31:33-06:00:	Sighting errors:	0
+LOG:	2016-12-01 12:31:33-06:00:	Approximate latitude:	N105d29.3	Approximate longitude:	223d48.8
+LOG:	2016-12-01 12:31:36-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:31:36-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:31:36-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:31:36-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:32:36-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:32:36-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:32:36-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:32:36-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:33:11-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:33:12-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:33:12-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:33:12-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:33:28-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:33:28-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:33:28-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:33:28-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:33:37-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:33:37-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:33:37-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:33:37-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:33:43-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:33:43-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:33:43-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:33:43-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:33:51-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:33:51-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:33:51-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:33:51-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:34:12-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:34:12-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:34:12-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:34:12-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:34:23-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:34:23-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:34:23-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:34:23-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:44:50-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:44:50-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:44:50-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:44:50-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:47:41-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/log.txt
+LOG:	2016-12-01 12:47:41-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/CA05sightings2.xml
+LOG:	2016-12-01 12:47:41-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/aries.txt
+LOG:	2016-12-01 12:47:41-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/sandbox/stars.txt
+LOG:	2016-12-01 12:47:41-06:00:	Rigil Kent.	2017-03-24	23:41:56	35d08.1	-60d53.8	318d09.9	N0d0.1	18d32	167d34.9	-516
+LOG:	2016-12-01 12:47:41-06:00:	Acrux	2017-03-24	23:42:06	48d33.9	-63d11.3	351d30.3	N0d0.1	18d32	174d57.9	-1332
+LOG:	2016-12-01 12:47:41-06:00:	Aldebaran	2017-03-24	23:43:12	13d42.3	16d32.3	109d27.8	N0d0.1	18d32	69d21.1	-2992
+LOG:	2016-12-01 12:47:41-06:00:	Sighting errors:	0
+LOG:	2016-12-01 12:47:41-06:00:	Approximate latitude:	N12d55.8	Approximate longitude:	328d04.3

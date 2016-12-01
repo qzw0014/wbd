@@ -3,9 +3,9 @@ myFix = Fix()
 myFix.setSightingFile("CA05sightings2.xml")
 myFix.setAriesFile("aries.txt")
 myFix.setStarFile("stars.txt")
-assumedLatitude = "27d59.5"
-assumedLongitude = "85d33.4"
+assumedLatitude = "N0d0.1"
+assumedLongitude = "18d32"
 try:
     myFix.getSightings(assumedLatitude, assumedLongitude)
-except:
-    print
+except ValueError as e:
+    print e
