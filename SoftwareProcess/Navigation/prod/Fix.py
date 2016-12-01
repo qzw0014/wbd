@@ -7,8 +7,8 @@ from Navigation.prod.Sighting import Sighting
 from math import sqrt, radians, sin, cos, degrees
 from math import tan
 from Navigation.prod.Angle import Angle
-from Navigation.sandbox.SightingSandBox import result
-from numpy import arcsin, arccos
+from math import asin as arcsin
+from math import acos as arccos
 class Fix(object):
     
     
@@ -157,8 +157,8 @@ class Fix(object):
                 log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\t" + sighting.get_latitude() 
                           + "\t" + sighting.get_longitude() + "\t" + sighting.get_assumedLatitude() + "\t" + sighting.get_assumedlongitude() + "\t" + sighting.get_azimuthAdjustment() + "\t" + sighting.get_distanceAdjustment() + "\n")
             log.write("LOG:\t" + self.getTime() + ":\tSighting errors:" + "\t" + str(self.sightingErrors) + "\n")
+            log.write("LOG:\t" + self.getTime() + ":\tApproximate latitude:" + "\t" + approximateLatitide + "\t" + "Approximate longitude:" + "\t" + approximateLongitide + "\n")
             log.close()
-            
             return (approximateLatitide, approximateLongitide)
     
     
@@ -501,11 +501,14 @@ class Fix(object):
                 azimuthAngle = Angle()
                 distanceAdjustment = float(oneSighting.get_distanceAdjustment())
                 azimuthAngle.setDegreesAndMinutes(oneSighting.get_azimuthAdjustment())
-                sumOfLat = sumOfLat + distanceAdjustment + cos(radians(azimuthAngle.getDegrees()))
-                sumOfLon = sumOfLon + distanceAdjustment + sin(radians(azimuthAngle.getDegrees()))
+                sumOfLat = sumOfLat + distanceAdjustment * cos(radians(azimuthAngle.getDegrees()))
+                sumOfLon = sumOfLon + distanceAdjustment * sin(radians(azimuthAngle.getDegrees()))
             approximateLatitude = assumedLatitude + sumOfLat / 60
             approximateLongitude = assumedLongitude + sumOfLon / 60
-            return(approximateLatitude, approximateLongitude)
+            approximateLatitude = self.approximateLatitideConverter(approximateLatitude)
+            approLongAngle = Angle()
+            approLongAngle.setDegrees(approximateLongitude)
+            return(approximateLatitude, approLongAngle.getString())
     
     
     def calculateDistanceAndAzimuthAdjustment(self, sighting):
@@ -536,10 +539,9 @@ class Fix(object):
     
     def getCorrectedAltitude(self, geoPosLatitude, assumedLatitude, LHA):
         geoPosLatAngle = Angle()
-        assLatAngle = Angle()
+        assLatFloat = self.latitudeConverter(assumedLatitude)
         geoPosLatAngle.setDegreesAndMinutes(geoPosLatitude)
-        assLatAngle.setDegreesAndMinutes(assumedLatitude)
-        intermediateDistance = (sin(radians(geoPosLatAngle.getDegrees())) * sin(radians(assLatAngle.getDegrees()))) + (cos(radians(geoPosLatAngle.getDegrees())) * cos(radians(assLatAngle.getDegrees())) * cos(radians(LHA)))
+        intermediateDistance = (sin(radians(geoPosLatAngle.getDegrees())) * sin(radians(assLatFloat))) + (cos(radians(geoPosLatAngle.getDegrees())) * cos(radians(assLatFloat)) * cos(radians(LHA)))
         correctedAltitude = arcsin(intermediateDistance)
         correctedAltitude = degrees(correctedAltitude)
         return (correctedAltitude, intermediateDistance)
@@ -555,12 +557,39 @@ class Fix(object):
     
     def getAzimuthAdjustment(self, geoPosLatitude, assumedLatitude, correctedAltitude, intermediateDistance):
         geoPosLatAngle = Angle()
-        assLatAngle = Angle()
+        assLatFloat = self.latitudeConverter(assumedLatitude)
         geoPosLatAngle.setDegreesAndMinutes(geoPosLatitude)
-        assLatAngle.setDegreesAndMinutes(assumedLatitude)
-        mem = (sin(radians(geoPosLatAngle.getDegrees())) - sin(radians(assLatAngle.getDegrees())) * intermediateDistance)
-        deno = (cos(radians(assLatAngle.getDegrees())) * cos(radians(correctedAltitude)))
+        mem = (sin(radians(geoPosLatAngle.getDegrees())) - sin(radians(assLatFloat)) * intermediateDistance)
+        deno = (cos(radians(assLatFloat)) * cos(radians(correctedAltitude)))
         tem = (mem / deno)
         azimuthAdjustment = arccos(tem)
         azimuthAdjustment = degrees(azimuthAdjustment)
         return azimuthAdjustment
+    
+    
+    def latitudeConverter(self, assumedLatitude):
+        pattern = re.compile(r'-?\d+\.?\d?')
+        result = pattern.findall(assumedLatitude)
+        minTemp = float(result[1]) % 60
+        carry = int(float(result[1]) /60)
+        if int(result[0]) < 0:
+            degrees = (float(int(result[0]) - carry) - (minTemp / 60)) 
+        else:
+            degrees = (float(int(result[0]) + carry) + (minTemp / 60)) 
+        return degrees
+    
+    
+    def approximateLatitideConverter(self, approximateLatitide):
+        if approximateLatitide > 0:
+            degree = str(int(approximateLatitide))
+            minute = str(round((approximateLatitide - int(approximateLatitide)) * 60, 1))
+            result = "N" + degree + "d" +minute
+            return result
+        elif approximateLatitide == 0:
+            return "0d0.0"
+        else:
+            approximateLatitide = approximateLatitide * (-1)
+            degree = str(int(approximateLatitide))
+            minute = str(round((approximateLatitide - int(approximateLatitide)) * 60, 1))
+            result = "S" + degree + "d" +minute
+            return result
