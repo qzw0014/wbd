@@ -579,15 +579,15 @@ class Fix(object):
     
     def approximateLatitideConverter(self, approximateLatitide):
         if approximateLatitide > 0:
-            degree = str(int(approximateLatitide))
-            minute = str(round((approximateLatitide - int(approximateLatitide)) * 60, 1))
-            result = "N" + degree + "d" +minute
+            tempAngle =Angle()
+            tempAngle.setDegrees(approximateLatitide)
+            result = "N" + tempAngle.getString()
             return result
         elif approximateLatitide == 0:
-            return "0d0.0"
+            return "0d00"
         else:
             approximateLatitide = approximateLatitide * (-1)
-            degree = str(int(approximateLatitide))
-            minute = str(round((approximateLatitide - int(approximateLatitide)) * 60, 1))
-            result = "S" + degree + "d" +minute
+            tempAngle =Angle()
+            tempAngle.setDegrees(approximateLatitide)
+            result = "S" + tempAngle.getString()
             return result

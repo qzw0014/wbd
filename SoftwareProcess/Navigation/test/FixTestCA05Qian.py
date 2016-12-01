@@ -145,7 +145,7 @@ class TestFix(unittest.TestCase):
     def test300_030_ShouldLogStarLatLonWithInterpolation(self):
         'log geographical position'
         testFile = "CA05sightings2.xml"
-        targetStringList = ["Rigil Kent.", None, None, None, "-60d53.8", "318d9.9","S53d38.4","74d35.3","125d37.7","2159"]
+        targetStringList = ["Rigil Kent.", None, None, None, "-60d53.8", "318d09.9","S53d38.4","74d35.3","125d37.7","2159"]
         theFix = F.Fix(self.RANDOM_LOG_FILE)
         theFix.setSightingFile(testFile)
         theFix.setAriesFile(self.ariesFileName)   

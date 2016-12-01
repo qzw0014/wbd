@@ -63,7 +63,10 @@ class Angle():
             raise ValueError("Angle.compare:  The input value is not a valid instance of Angle")
 
     def getString(self):
-        stringResult  = str(int(self.degrees)) + "d" + str(self.minutes)
+        if self.minutes < 10:
+            stringResult  = str(int(self.degrees)) + "d0" + str(self.minutes)
+        else:
+            stringResult  = str(int(self.degrees)) + "d" + str(self.minutes)
         return stringResult
 
     def getDegrees(self):
