@@ -490,27 +490,24 @@ class Fix(object):
              
          
     def calculateApproximateLatAndLon(self):
-        if len(self.sigthingsList) == 0:
-            return
-        else:
-            assLonAngle = Angle()
-            assLonAngle.setDegreesAndMinutes(self.sigthingsList[0].get_assumedlongitude())
-            assumedLatitude = self.latitudeConverter(self.sigthingsList[0].get_assumedLatitudeWithoutOrientation())
-            assumedLongitude = assLonAngle.getDegrees()
-            sumOfLat = 0.0
-            sumOfLon = 0.0
-            for oneSighting in self.sigthingsList:
-                azimuthAngle = Angle()
-                distanceAdjustment = float(oneSighting.get_distanceAdjustment())
-                azimuthAngle.setDegreesAndMinutes(oneSighting.get_azimuthAdjustment())
-                sumOfLat = sumOfLat + distanceAdjustment * cos(radians(azimuthAngle.getDegrees()))
-                sumOfLon = sumOfLon + distanceAdjustment * sin(radians(azimuthAngle.getDegrees()))
-            approximateLatitude = assumedLatitude + sumOfLat / 60
-            approximateLongitude = assumedLongitude + sumOfLon / 60
-            approximateLatitude = self.approximateLatitideConverter(approximateLatitude)
-            approLongAngle = Angle()
-            approLongAngle.setDegrees(approximateLongitude)
-            return(approximateLatitude, approLongAngle.getString())
+        assLonAngle = Angle()
+        assLonAngle.setDegreesAndMinutes(self.sigthingsList[0].get_assumedlongitude())
+        assumedLatitude = self.latitudeConverter(self.sigthingsList[0].get_assumedLatitudeWithoutOrientation())
+        assumedLongitude = assLonAngle.getDegrees()
+        sumOfLat = 0.0
+        sumOfLon = 0.0
+        for oneSighting in self.sigthingsList:
+            azimuthAngle = Angle()
+            distanceAdjustment = float(oneSighting.get_distanceAdjustment())
+            azimuthAngle.setDegreesAndMinutes(oneSighting.get_azimuthAdjustment())
+            sumOfLat = sumOfLat + distanceAdjustment * cos(radians(azimuthAngle.getDegrees()))
+            sumOfLon = sumOfLon + distanceAdjustment * sin(radians(azimuthAngle.getDegrees()))
+        approximateLatitude = assumedLatitude + sumOfLat / 60
+        approximateLongitude = assumedLongitude + sumOfLon / 60
+        approximateLatitude = self.approximateLatitideConverter(approximateLatitude)
+        approLongAngle = Angle()
+        approLongAngle.setDegrees(approximateLongitude)
+        return(approximateLatitude, approLongAngle.getString())
     
     
     def calculateDistanceAndAzimuthAdjustment(self, sighting):
