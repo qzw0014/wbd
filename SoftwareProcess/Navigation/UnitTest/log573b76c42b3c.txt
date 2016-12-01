@@ -1,4 +1,0 @@
-LOG:	2016-11-17 15:38:48-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/UnitTest/log573b76c42b3c.txt
-LOG:	2016-11-17 15:38:48-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/UnitTest/CA02_300_ValidMultipleStarSighting.xml
-LOG:	2016-11-17 15:38:48-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/UnitTest/CA03_Valid_Aries.txt
-LOG:	2016-11-17 15:38:48-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/UnitTest/CA03_Valid_Stars.txt

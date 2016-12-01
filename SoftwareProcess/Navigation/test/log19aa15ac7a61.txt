@@ -1,0 +1,4 @@
+LOG:	2016-12-01 11:24:11-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/log19aa15ac7a61.txt
+LOG:	2016-12-01 11:24:11-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA02_300_InvalidHeight.xml
+LOG:	2016-12-01 11:24:11-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Aries.txt
+LOG:	2016-12-01 11:24:11-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03_Valid_Stars.txt

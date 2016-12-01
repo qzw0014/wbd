@@ -88,7 +88,7 @@ class Sighting(object):
             tem = "-" + resultList[1]
             return tem
         else:
-            return resultList[0]
+            return resultList[1]
             
     
     

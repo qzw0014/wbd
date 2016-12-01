@@ -1,7 +1,0 @@
-LOG:	2016-10-30 17:54:50-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/log164d012bfb0d.txt
-LOG:	2016-10-30 17:54:50-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA03TestSightingFile.xml
-LOG:	2016-10-30 17:54:50-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
-LOG:	2016-10-30 17:54:50-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt
-LOG:	2016-10-30 17:54:50-06:00:	Sirius	2017-04-09	09:30:30	45d11.9	-16d44.5	239d13.1
-LOG:	2016-10-30 17:54:50-06:00:	Pollux	2017-04-14	23:50:14	15d1.5	27d59.1	84d33.4
-LOG:	2016-10-30 17:54:50-06:00:	Sighting error:	1

@@ -1,2 +1,0 @@
-LOG:	2016-10-30 17:03:47-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/logfa30f9e33d34.txt
-LOG:	2016-10-30 17:03:47-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA02_300_ValidMultipleStarSighting.xml

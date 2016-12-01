@@ -148,10 +148,14 @@ class Fix(object):
                         self.sightingErrors += 1
                 else:
                     self.sightingErrors += 1
-            self.sigthingsList.sort(key=lambda Sighting:(Sighting.index, Sighting.body))
-            approLatAndLon = self.calculateApproximateLatAndLon()
-            approximateLatitide = approLatAndLon[0]
-            approximateLongitide = approLatAndLon[1]
+            if len(self.sigthingsList) > 0:
+                self.sigthingsList.sort(key=lambda Sighting:(Sighting.index, Sighting.body))
+                approLatAndLon = self.calculateApproximateLatAndLon()
+                approximateLatitide = approLatAndLon[0]
+                approximateLongitide = approLatAndLon[1]
+            else:
+                approximateLatitide = assumedLatitude
+                approximateLongitide = assumedLongitude
             log = open(self.logFileName, "a")
             for sighting in self.sigthingsList:
                 log.write("LOG:\t" + self.getTime() + ":\t" + sighting.get_body() + "\t" + sighting.get_date() + "\t" + sighting.get_time()  + "\t" + sighting.get_adjustedAltitude() + "\t" + sighting.get_latitude() 
@@ -459,10 +463,10 @@ class Fix(object):
                     return True
                 else:
                     return False
-            elif resultList[0] == "" and resultList[1] == "0d0.0":
-                return True
-            else:
-                return False
+        elif resultList[0] == "" and resultList[1] == "0d0.0":
+            return True
+        else:
+            return False
         
         
     def assumedLongitudeCheck(self, assumedLongitude):

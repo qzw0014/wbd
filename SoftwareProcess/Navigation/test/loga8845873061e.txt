@@ -1,4 +1,0 @@
-LOG:	2016-10-30 17:58:21-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/loga8845873061e.txt
-LOG:	2016-10-30 17:58:21-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/sf.xml
-LOG:	2016-10-30 17:58:21-06:00:	Aries file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/aries.txt
-LOG:	2016-10-30 17:58:21-06:00:	Star file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/stars.txt

@@ -1,2 +1,0 @@
-LOG:	2016-10-30 17:03:47-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/log0e9671489cc5.txt
-LOG:	2016-10-30 17:03:47-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/log0e9671489cc5.txt

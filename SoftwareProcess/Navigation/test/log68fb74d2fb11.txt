@@ -1,2 +1,0 @@
-LOG:	2016-11-30 22:40:44-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/log68fb74d2fb11.txt
-LOG:	2016-11-30 22:40:44-06:00:	Sighting file: /Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/test/CA05sightings2.xml

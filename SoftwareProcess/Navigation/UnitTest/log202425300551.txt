@@ -1,1 +1,0 @@
-LOG:	2016-11-17 15:32:11-06:00:	Log file:	/Users/wqmmn/git/SoftwareProcess/SoftwareProcess/Navigation/UnitTest/log202425300551.txt

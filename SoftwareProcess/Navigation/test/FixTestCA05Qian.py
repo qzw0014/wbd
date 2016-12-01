@@ -221,44 +221,59 @@ class TestFix(unittest.TestCase):
                         self.assertNotEquals(-1, logFileContents[logEntryNumber].find(target), 
                                          "Major:  Lat/Lon entry is not correct for getSightings " + self.RANDOM_LOG_FILE)
         self.assertEquals(1, sightingCount)
-        self.deleteNamedLogFlag = True      
-# #---------- 
-#     def test300_910_ShouldRaiseExceptionOnNotSettingSightingsFile(self):
-#         'Raise exception on failure to set sighting file'
-#         expectedDiag = self.className + "getSightings:"
-#         theFix = F.Fix()
-#         theFix.setAriesFile(self.ariesFileName)   
-#         theFix.setStarFile(self.starFileName)
-#         with self.assertRaises(ValueError) as context:
-#             theFix.getSightings()
-#         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)],
-#                           "Major:  failure to set sighting file before getSightings()") 
-#     
-#     def test300_920_ShouldRaiseExceptionOnNotSettingStarFile(self):
-#         'Raise exception on failure to set star file'
-#         expectedDiag = self.className + "getSightings:"
-#         testFile = self.mapFileToTest("validOneStarSighting")
-#         theFix = F.Fix(self.RANDOM_LOG_FILE)
-#         theFix = F.Fix()
-#         theFix.setSightingFile(testFile)
-#         theFix.setAriesFile(self.ariesFileName)   
-#         with self.assertRaises(ValueError) as context:
-#             theFix.getSightings()
-#         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)],
-#                           "Major:  failure to set star file before getSightings()")   
-# 
-#     def test300_930_ShouldRaiseExceptionOnNotSettingAriesFile(self):
-#         'Raise exception on failure to set aries file'
-#         expectedDiag = self.className + "getSightings:"
-#         testFile = self.mapFileToTest("validOneStarSighting")
-#         theFix = F.Fix(self.RANDOM_LOG_FILE)
-#         theFix = F.Fix()
-#         theFix.setSightingFile(testFile)
-#         theFix.setStarFile(self.ariesFileName)   
-#         with self.assertRaises(ValueError) as context:
-#             theFix.getSightings()
-#         self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)],
-#                           "Major:  failure to set aries file before getSightings()")     
+        self.deleteNamedLogFlag = True
+        
+    def test300_060_ShouldReturnCorrectTuple(self):
+        'parse sighting file that valid tags'
+        testFile = "CA05sightings2.xml"
+        expectedResult = ("S13d28.0", "101d42.2")
+        theFix = F.Fix()
+        theFix.setSightingFile(testFile)
+        theFix.setStarFile(self.starFileName)
+        theFix.setAriesFile(self.ariesFileName)
+        assumedLatitude = "S53d38.4"
+        assumedLongitude = "74d35.3"
+        result = theFix.getSightings(assumedLatitude,assumedLongitude)
+        self.assertTupleEqual(expectedResult, result, 
+                              "Minor:  incorrect return value from getSightings")      
+#---------- 
+    def test300_910_ShouldRaiseExceptionOnNotSettingSightingsFile(self):
+        'Raise exception on failure to set sighting file'
+        expectedDiag = self.className + "getSightings:"
+        theFix = F.Fix()
+        theFix.setAriesFile(self.ariesFileName)   
+        theFix.setStarFile(self.starFileName)
+        with self.assertRaises(ValueError) as context:
+            theFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)],
+                          "Major:  failure to set sighting file before getSightings()") 
+     
+    def test300_920_ShouldRaiseExceptionOnNotSettingStarFile(self):
+        'Raise exception on failure to set star file'
+        expectedDiag = self.className + "getSightings:"
+        testFile = self.mapFileToTest("validOneStarSighting")
+        theFix = F.Fix(self.RANDOM_LOG_FILE)
+        theFix = F.Fix()
+        theFix.setSightingFile(testFile)
+        theFix.setAriesFile(self.ariesFileName)   
+        with self.assertRaises(ValueError) as context:
+            theFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)],
+                          "Major:  failure to set star file before getSightings()")   
+ 
+    def test300_930_ShouldRaiseExceptionOnNotSettingAriesFile(self):
+        'Raise exception on failure to set aries file'
+        expectedDiag = self.className + "getSightings:"
+        testFile = self.mapFileToTest("validOneStarSighting")
+        theFix = F.Fix(self.RANDOM_LOG_FILE)
+        theFix = F.Fix()
+        theFix.setSightingFile(testFile)
+        theFix.setStarFile(self.ariesFileName)   
+        with self.assertRaises(ValueError) as context:
+            theFix.getSightings()
+        self.assertEquals(expectedDiag, context.exception.args[0][0:len(expectedDiag)],
+                          "Major:  failure to set aries file before getSightings()")     
+
 
 #  helper methods
     def indexInList(self, target, searchList):
